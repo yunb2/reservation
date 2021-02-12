@@ -1,7 +1,6 @@
 package me.minho.reservation.domain;
 
 import javax.persistence.*;
-
 import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.LAZY;
@@ -33,7 +32,7 @@ public class Shop {
     @Column(name = "CLOSE_TIME", nullable = false)
     private LocalDateTime closeTime;
 
-    @Column(name = "INTERVAL", nullable = false)
+    @Column(name = "RESERVATION_INTERVAL", nullable = false)
     private int interval;
 
     @OneToOne(fetch = LAZY)
