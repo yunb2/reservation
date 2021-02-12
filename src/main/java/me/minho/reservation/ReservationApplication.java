@@ -9,7 +9,6 @@ import java.util.concurrent.Semaphore;
 public class ReservationApplication {
 
     public static void main(String[] args) {
-        Semaphore
         SpringApplication.run(ReservationApplication.class, args);
     }
 
