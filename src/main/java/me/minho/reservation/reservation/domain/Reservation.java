@@ -18,7 +18,8 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "RESERVATION")
 public class Reservation {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RESERVATION_ID")
     private long id;
 
@@ -28,6 +29,7 @@ public class Reservation {
     @Column(name = "END_TIME", nullable = false)
     private LocalDateTime endTime;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "RESERVATION_STATUS", nullable = false)
     private ReservationStatus reservationStatus;
@@ -51,14 +53,18 @@ public class Reservation {
         this.startTime = startTime;
         this.endTime = endTime;
         this.reservationStatus = reservationStatus;
-        this. reservationType = reservationType;
+        this.reservationType = reservationType;
     }
 
     public boolean isCompleted() {
         return reservationStatus == ReservationStatus.COMPLETED;
     }
 
-    public void changeStatus(ReservationStatus status) {
-        this.reservationStatus = status;
+    public void updateTime(LocalDateTime startTime, LocalDateTime endTime) {
+        if (startTime == null || endTime == null) {
+            throw new IllegalStateException("예약 시간 정보는 반드시 존재해야 합니다");
+        }
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 }

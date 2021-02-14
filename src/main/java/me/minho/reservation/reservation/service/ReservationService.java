@@ -5,6 +5,7 @@ import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.reservation.domain.Reservation;
 import me.minho.reservation.reservation.domain.ReservationRepository;
 import me.minho.reservation.reservation.domain.ReservationStatus;
+import me.minho.reservation.reservation.web.dto.ReservationTimeUpdateRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,9 +41,16 @@ public class ReservationService {
     }
 
     @Transactional
-    public long changeStatus(long id, ReservationStatus status) {
+    public long updateStatus(long id, ReservationStatus status) {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 예약이 없습니다. id = " + id));
-        reservation.changeStatus(status);
+        reservation.setReservationStatus(status);
+        return reservation.getId();
+    }
+
+    @Transactional
+    public long updateTime(long id, ReservationTimeUpdateRequest reservationTimeUpdateRequest) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 예약이 없습니다. id = " + id));
+        reservation.updateTime(reservationTimeUpdateRequest.getStartTime(), reservationTimeUpdateRequest.getEndTime());
         return reservation.getId();
     }
 }
