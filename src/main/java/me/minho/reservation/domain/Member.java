@@ -36,4 +36,8 @@ public class Member {
         this.name = name;
         this.memberType = memberType;
     }
+
+    public boolean isAdmin() {
+        return memberType == MemberType.ADMIN;
+    }
 }

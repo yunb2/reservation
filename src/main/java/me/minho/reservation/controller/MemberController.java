@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @RestController
@@ -41,7 +42,7 @@ public class MemberController {
             long id = memberService.login(request.getEmail(), request.getPassword());
             session.setAttribute("id", id);
             return new RestResponse<>(ResultCode.SUCCESS, "").toResponseEntity(HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
+        } catch (NoSuchElementException | IllegalArgumentException e) {
             return new RestResponse<>(ResultCode.NOT_FOUND, "").toResponseEntity(HttpStatus.OK);
         }
     }

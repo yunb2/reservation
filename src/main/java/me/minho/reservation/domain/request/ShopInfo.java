@@ -1,0 +1,25 @@
+package me.minho.reservation.domain.request;
+
+import lombok.Data;
+import me.minho.reservation.domain.Member;
+import me.minho.reservation.domain.Shop;
+
+import java.time.LocalDateTime;
+
+@Data
+public class ShopInfo {
+    private String name;
+    private String contact;
+    private String address;
+    private String description;
+    private LocalDateTime openTime;
+    private LocalDateTime closeTime;
+    private int interval;
+
+    public Shop toShop(Member owner) {
+        if (!owner.isAdmin()) {
+            throw new IllegalArgumentException("관리자 계정이 아닙니다.");
+        }
+        return new Shop(name, contact, address, description, openTime, closeTime, interval, owner);
+    }
+}

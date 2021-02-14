@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -48,7 +50,7 @@ class MemberServiceTest {
         when(mockMemberRepository.findByEmail(email)).thenReturn(null);
 
         // then
-        assertThrows(IllegalArgumentException.class, () -> mockMemberService.login(email, password));
+        assertThrows(NoSuchElementException.class, () -> mockMemberService.login(email, password));
     }
 
     @Test

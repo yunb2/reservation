@@ -6,6 +6,8 @@ import me.minho.reservation.repository.MemberRepository;
 import me.minho.reservation.util.HashUtil;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @RequiredArgsConstructor
 @Service
 public class MemberService {
@@ -23,7 +25,7 @@ public class MemberService {
     public long login(String email, String passwordInput) {
         final Member findMember = memberRepository.findByEmail(email);
         if (findMember == null) {
-            throw new IllegalArgumentException("존재하지 않는 회원입니다.");
+            throw new NoSuchElementException("존재하지 않는 회원입니다.");
         }
         if (!HashUtil.validatePassword(passwordInput, findMember.getHashedPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");

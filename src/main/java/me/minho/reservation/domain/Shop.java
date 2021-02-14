@@ -1,10 +1,11 @@
 package me.minho.reservation.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-import static javax.persistence.FetchType.LAZY;
-
+@NoArgsConstructor
 @Entity
 @Table(name = "SHOP")
 public class Shop {
@@ -35,7 +36,18 @@ public class Shop {
     @Column(name = "RESERVATION_INTERVAL", nullable = false)
     private int interval;
 
-    @OneToOne(fetch = LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member owner;
+
+    public Shop(String name, String contact, String address, String description, LocalDateTime openTime, LocalDateTime closeTime, int interval, Member owner) {
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
+        this.description = description;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.interval = interval;
+        this.owner = owner;
+    }
 }
