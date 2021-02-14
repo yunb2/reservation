@@ -1,5 +1,6 @@
 package me.minho.reservation.reservation.domain;
 
+import lombok.Getter;
 import me.minho.reservation.member.domain.Member;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.LAZY;
 
+@Getter
 @Entity
 @Table(name = "RESERVATION")
 public class Reservation {
