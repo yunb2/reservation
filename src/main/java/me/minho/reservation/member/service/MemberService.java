@@ -15,7 +15,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Long signUp(Member member) {
+    public long signUp(Member member) {
         // 이메일 중복 검사
         if (memberRepository.findByEmail(member.getEmail()) != null) {
             throw new IllegalArgumentException("이미 존재하는 이메일입니다");
@@ -26,7 +26,7 @@ public class MemberService {
 
         // 관리자면 샵도 함께 생성
         if (member.isAdmin()) {
-            shopService.createShop(member.getShop());
+            shopService.save(member.getShop());
         }
 
         return member.getId();
