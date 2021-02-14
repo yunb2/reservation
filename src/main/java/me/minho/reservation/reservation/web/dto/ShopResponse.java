@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import me.minho.reservation.reservation.domain.Shop;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +15,8 @@ public class ShopResponse {
     private String contact;
     private String address;
     private String description;
-    private LocalDateTime openTime;
-    private LocalDateTime closeTime;
+    private LocalTime openTime;
+    private LocalTime closeTime;
     private int interval;
 
     public static ShopResponse of(Shop shop) {

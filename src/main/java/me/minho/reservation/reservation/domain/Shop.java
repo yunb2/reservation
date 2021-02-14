@@ -7,7 +7,7 @@ import me.minho.reservation.member.domain.Member;
 
 import javax.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -35,10 +35,10 @@ public class Shop {
     private String description;
 
     @Column(name = "OPEN_TIME", nullable = false)
-    private LocalDateTime openTime;
+    private LocalTime openTime;
 
     @Column(name = "CLOSE_TIME", nullable = false)
-    private LocalDateTime closeTime;
+    private LocalTime closeTime;
 
     @Column(name = "RESERVATION_TIME_INTERVAL", nullable = false)
     private int interval;
@@ -48,7 +48,7 @@ public class Shop {
     private Member owner;
 
     @Builder
-    public Shop(String name, String contact, String address, String description, LocalDateTime openTime, LocalDateTime closeTime, int interval) {
+    public Shop(String name, String contact, String address, String description, LocalTime openTime, LocalTime closeTime, int interval, Member owner) {
         this.name = name;
         this.contact = contact;
         this.address = address;
@@ -56,5 +56,6 @@ public class Shop {
         this.openTime = openTime;
         this.closeTime = closeTime;
         this.interval = interval;
+        this.owner = owner;
     }
 }

@@ -2,10 +2,10 @@ package me.minho.reservation.reservation.web.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.reservation.domain.Shop;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @NoArgsConstructor
@@ -15,13 +15,11 @@ public class ShopSaveRequest {
     private String contact;
     private String address;
     private String description;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime openTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime closeTime;
+    private LocalTime openTime;
+    private LocalTime closeTime;
     private int interval;
 
-    public Shop toShop() {
+    public Shop toShop(Member owner) {
         return Shop.builder()
                 .name(name)
                 .contact(contact)
@@ -30,6 +28,7 @@ public class ShopSaveRequest {
                 .openTime(openTime)
                 .closeTime(closeTime)
                 .interval(interval)
+                .owner(owner)
                 .build();
     }
 }
