@@ -22,4 +22,8 @@ public class ShopService {
     public List<Shop> getShopList() {
         return shopRepository.findAll();
     }
+
+    public Shop getShop(long id) {
+        return shopRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 샵이 없습니다. id=" + id));
+    }
 }
