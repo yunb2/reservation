@@ -1,0 +1,16 @@
+server:
+  port: 5000
+
+spring:
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    data-username: sa
