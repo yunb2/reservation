@@ -12,14 +12,14 @@ public class MemberResponse {
     private long id;
     private String email;
     private String name;
-    private MemberType memberType;
+    private MemberType type;
 
     public static MemberResponse of(Member member) {
         return MemberResponse.builder()
                 .id(member.getId())
                 .email(member.getEmail())
                 .name(member.getName())
-                .memberType(member.getMemberType())
+                .type(member.getMemberType())
                 .build();
     }
 }
