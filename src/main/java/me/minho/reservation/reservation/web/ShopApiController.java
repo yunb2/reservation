@@ -35,10 +35,10 @@ public class ShopApiController {
         }
     }
 
-    @GetMapping("/reservations/{shopId}")
-    public RestResponseData<List<ReservationResponse>> getReservationList(@PathVariable("shopId") long shopId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime date) {
+    @GetMapping("/shop/{shopId}/reservations")
+    public RestResponseData<List<ReservationResponse>> getReservationList(@PathVariable("shopId") long shopId, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime dateTime) {
         try {
-            return new RestResponseData(HttpStatus.OK, ReservationResponse.of(shopService.getReservationList(shopId, date)));
+            return new RestResponseData(HttpStatus.OK, ReservationResponse.of(shopService.getShopWithOneDayReservationList(shopId, dateTime), dateTime));
         } catch (IllegalArgumentException e) {
             return new RestResponseData(HttpStatus.NOT_FOUND, e.getMessage());
         }

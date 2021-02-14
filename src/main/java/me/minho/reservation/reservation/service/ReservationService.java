@@ -14,7 +14,7 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
-    public List<Reservation> getReservationList(long shopId, LocalDateTime dateTime) {
+    public List<Reservation> getOneDayReservationList(long shopId, LocalDateTime dateTime) {
         return reservationRepository.findAllByShopIdAndStartTimeAfterAndStartTimeBefore(shopId, dateTime, dateTime.plusDays(1));
     }
 }

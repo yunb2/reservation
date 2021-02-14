@@ -30,8 +30,10 @@ public class ShopService {
         return shopRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 샵이 없습니다. id = " + id));
     }
 
-    public List<Reservation> getReservationList(long shopId, LocalDateTime dateTime) {
+    public Shop getShopWithOneDayReservationList(long shopId, LocalDateTime dateTime) {
         Shop shop = getShop(shopId);
-        return reservationService.getReservationList(shop.getId(), dateTime);
+        List<Reservation> reservationList = reservationService.getOneDayReservationList(shop.getId(), dateTime);
+        shop.setReservationList(reservationList);
+        return shop;
     }
 }

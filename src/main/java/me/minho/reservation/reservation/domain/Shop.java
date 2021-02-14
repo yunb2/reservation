@@ -3,11 +3,13 @@ package me.minho.reservation.reservation.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.minho.reservation.member.domain.Member;
 
 import javax.persistence.*;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -46,6 +48,10 @@ public class Shop {
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member owner;
+
+    @Setter
+    @OneToMany(mappedBy = "shop")
+    private List<Reservation> reservationList;
 
     @Builder
     public Shop(String name, String contact, String address, String description, LocalTime openTime, LocalTime closeTime, int interval, Member owner) {
