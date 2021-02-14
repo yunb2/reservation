@@ -33,7 +33,7 @@ public class Shop {
     @Column(name = "CLOSE_TIME", nullable = false)
     private LocalDateTime closeTime;
 
-    @Column(name = "INTERVAL", nullable = false)
+    @Column(name = "TIME_INTERVAL", nullable = false)
     private int interval;
 
     @OneToOne(fetch = LAZY)
