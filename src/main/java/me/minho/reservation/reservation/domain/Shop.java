@@ -3,7 +3,6 @@ package me.minho.reservation.reservation.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import me.minho.reservation.member.domain.Member;
 
 import javax.persistence.*;
@@ -44,7 +43,6 @@ public class Shop {
     @Column(name = "RESERVATION_TIME_INTERVAL", nullable = false)
     private int interval;
 
-    @Setter
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member owner;
