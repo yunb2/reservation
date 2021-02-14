@@ -38,4 +38,11 @@ public class ReservationService {
     public List<Reservation> findAll() {
         return reservationRepository.findAllByMember(Member.SUPER_MEMBER);
     }
+
+    @Transactional
+    public long changeStatus(long id, ReservationStatus status) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 예약이 없습니다. id = " + id));
+        reservation.changeStatus(status);
+        return reservation.getId();
+    }
 }

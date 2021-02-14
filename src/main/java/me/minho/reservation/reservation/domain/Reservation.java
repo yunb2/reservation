@@ -57,4 +57,8 @@ public class Reservation {
     public boolean isCompleted() {
         return reservationStatus == ReservationStatus.COMPLETED;
     }
+
+    public void changeStatus(ReservationStatus status) {
+        this.reservationStatus = status;
+    }
 }

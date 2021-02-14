@@ -1,5 +1,6 @@
 package me.minho.reservation.reservation.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
 import me.minho.reservation.reservation.domain.Reservation;
@@ -16,6 +17,8 @@ import java.util.stream.Collectors;
 @Builder
 public class ReservationResponse {
 
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private long id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private ReservationStatus status;
@@ -23,6 +26,7 @@ public class ReservationResponse {
 
     private static ReservationResponse of(Reservation reservation) {
         return ReservationResponse.builder()
+                .id(reservation.getId())
                 .startTime(reservation.getStartTime())
                 .endTime(reservation.getEndTime())
                 .status(reservation.getReservationStatus())
