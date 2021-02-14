@@ -3,8 +3,6 @@ package me.minho.reservation.domain;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-import static javax.persistence.FetchType.LAZY;
-
 @Entity
 @Table(name = "RESERVATION")
 public class Reservation {
@@ -27,11 +25,11 @@ public class Reservation {
     @Column(name = "RESERVATION_TYPE", nullable = false)
     private ReservationType reservationType;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOP_ID")
     private Shop shop;
 }
