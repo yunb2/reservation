@@ -21,13 +21,19 @@ public class ReservationResponse {
     private ReservationStatus status;
     private ReservationType type;
 
-    public static ReservationResponse of(Reservation reservation) {
+    private static ReservationResponse of(Reservation reservation) {
         return ReservationResponse.builder()
                 .startTime(reservation.getStartTime())
                 .endTime(reservation.getEndTime())
                 .status(reservation.getReservationStatus())
                 .type(reservation.getReservationType())
                 .build();
+    }
+
+    public static List<ReservationResponse> of(List<Reservation> reservationList) {
+        return reservationList.stream()
+                .map(reservation -> of(reservation))
+                .collect(Collectors.toList());
     }
 
     public static List<ReservationResponse> of(Shop shop, LocalDateTime dateTime) {
@@ -61,8 +67,6 @@ public class ReservationResponse {
             }
         }
 
-        return reservationList.stream()
-                .map(reservation -> of(reservation))
-                .collect(Collectors.toList());
+        return of(reservationList);
     }
 }
