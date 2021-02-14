@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "MEMBER")
 public class Member {
 
+    @Getter
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private long id;
@@ -18,6 +19,7 @@ public class Member {
     @Column(name = "EMAIL", unique = true, nullable = false, columnDefinition = "char(")
     private String email;
 
+    @Getter
     @Column(name = "HASHED_PASSWORD", nullable = false)
     private String hashedPassword;
 

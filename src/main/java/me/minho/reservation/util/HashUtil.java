@@ -30,11 +30,27 @@ public class HashUtil {
         final KeySpec spec = new PBEKeySpec(plainPassword.toCharArray(), salt, ITERATION_COUNT, KEY_LENGTH);
         final byte[] hash = factory.generateSecret(spec).getEncoded();
 
-        return String.join(HASHED_PASSWORD_DELIMITER, toHex(salt), String.valueOf(ITERATION_COUNT), String.valueOf(KEY_LENGTH), toHex(hash));
+        return String.join(HASHED_PASSWORD_DELIMITER, SECRET_KEY_ALGORITHM, toHex(salt), String.valueOf(ITERATION_COUNT), String.valueOf(KEY_LENGTH), toHex(hash));
+    }
+
+    public static boolean validatePassword(String passwordInput, String hashedPassword) {
+        try {
+            final String[] hashedPasswordInfo = hashedPassword.split(HASHED_PASSWORD_DELIMITER);
+            final SecretKeyFactory factory = SecretKeyFactory.getInstance(hashedPasswordInfo[0]);
+            final byte[] salt = DatatypeConverter.parseHexBinary(hashedPasswordInfo[1]);
+            final int iterationCount = Integer.parseInt(hashedPasswordInfo[2]);
+            final int keyLength = Integer.parseInt(hashedPasswordInfo[3]);
+
+            final KeySpec spec = new PBEKeySpec(passwordInput.toCharArray(), salt, iterationCount, keyLength);
+            final byte[] hash = factory.generateSecret(spec).getEncoded();
+            return hashedPasswordInfo[4].equals(toHex(hash));
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            log.error(e.getMessage(), e);
+            return false;
+        }
     }
 
     private static String toHex(byte[] salt) {
         return DatatypeConverter.printHexBinary(salt);
     }
-
 }
