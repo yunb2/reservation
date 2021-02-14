@@ -22,4 +22,13 @@ public class ShopInfo {
         }
         return new Shop(name, contact, address, description, openTime, closeTime, interval, owner);
     }
+
+    public ShopInfo(String name, String contact, String address, String description, LocalDateTime openTime, LocalDateTime closeTime) {
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
+        this.description = description;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+    }
 }

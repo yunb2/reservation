@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class ShopController {
@@ -23,6 +25,12 @@ public class ShopController {
         } catch (IllegalArgumentException e) {
             return new RestResponse<>(ResultCode.BAD_REQUEST,"").toResponseEntity(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/shops")
+    public ResponseEntity<RestResponse<List<ShopInfo>>> getShopList() {
+        final List<ShopInfo> shopInfoList = shopService.getList();
+        return new RestResponse<>(ResultCode.SUCCESS, shopInfoList).toResponseEntity(HttpStatus.OK);
     }
 
 }

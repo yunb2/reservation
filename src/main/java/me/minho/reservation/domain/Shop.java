@@ -1,6 +1,7 @@
 package me.minho.reservation.domain;
 
 import lombok.NoArgsConstructor;
+import me.minho.reservation.domain.request.ShopInfo;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -49,5 +50,9 @@ public class Shop {
         this.closeTime = closeTime;
         this.interval = interval;
         this.owner = owner;
+    }
+
+    public ShopInfo summarize() {
+        return new ShopInfo(name, contact, address, description, openTime, closeTime);
     }
 }
