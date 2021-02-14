@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import me.minho.reservation.reservation.domain.Shop;
+import me.minho.reservation.shop.domain.Shop;
 
 import javax.persistence.*;
 

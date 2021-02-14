@@ -5,7 +5,7 @@ import lombok.Getter;
 import me.minho.reservation.reservation.domain.Reservation;
 import me.minho.reservation.reservation.domain.ReservationStatus;
 import me.minho.reservation.reservation.domain.ReservationType;
-import me.minho.reservation.reservation.domain.Shop;
+import me.minho.reservation.shop.domain.Shop;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package me.minho.reservation.reservation.web;
+package me.minho.reservation.shop.web;
 
 import lombok.RequiredArgsConstructor;
-import me.minho.reservation.reservation.service.ShopService;
 import me.minho.reservation.reservation.web.dto.ReservationResponse;
-import me.minho.reservation.reservation.web.dto.ShopResponse;
+import me.minho.reservation.shop.service.ShopService;
+import me.minho.reservation.shop.web.dto.ShopResponse;
 import me.minho.reservation.util.RestResponseData;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;

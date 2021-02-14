@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.member.domain.MemberType;
-import me.minho.reservation.reservation.domain.Shop;
-import me.minho.reservation.reservation.web.dto.ShopSaveRequest;
+import me.minho.reservation.shop.domain.Shop;
+import me.minho.reservation.shop.web.dto.ShopSaveRequest;
 
 @Getter
 @NoArgsConstructor

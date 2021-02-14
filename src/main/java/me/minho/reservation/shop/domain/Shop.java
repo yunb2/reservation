@@ -1,10 +1,11 @@
-package me.minho.reservation.reservation.domain;
+package me.minho.reservation.shop.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.reservation.domain.Reservation;
 
 import javax.persistence.*;
 

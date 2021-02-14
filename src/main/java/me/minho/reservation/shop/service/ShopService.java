@@ -1,9 +1,10 @@
-package me.minho.reservation.reservation.service;
+package me.minho.reservation.shop.service;
 
 import lombok.RequiredArgsConstructor;
 import me.minho.reservation.reservation.domain.Reservation;
-import me.minho.reservation.reservation.domain.Shop;
-import me.minho.reservation.reservation.domain.ShopRepository;
+import me.minho.reservation.shop.domain.Shop;
+import me.minho.reservation.shop.domain.ShopRepository;
+import me.minho.reservation.reservation.service.ReservationService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

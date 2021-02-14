@@ -1,10 +1,10 @@
-package me.minho.reservation.reservation.web.dto;
+package me.minho.reservation.shop.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
 import me.minho.reservation.member.web.dto.MemberResponse;
-import me.minho.reservation.reservation.domain.Shop;
+import me.minho.reservation.shop.domain.Shop;
 
 import java.time.LocalTime;
 import java.util.List;

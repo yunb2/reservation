@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.shop.domain.Shop;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

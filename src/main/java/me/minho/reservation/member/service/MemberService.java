@@ -3,7 +3,7 @@ package me.minho.reservation.member.service;
 import lombok.RequiredArgsConstructor;
 import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.member.domain.MemberRepository;
-import me.minho.reservation.reservation.service.ShopService;
+import me.minho.reservation.shop.service.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
