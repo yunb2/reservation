@@ -1,5 +1,7 @@
 package me.minho.reservation.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,6 +13,7 @@ public class Reservation {
     @Column(name = "RESERVATION_ID")
     private long id;
 
+    @Getter
     @Column(name = "START_TIME", nullable = false)
     private LocalDateTime startTime;
 

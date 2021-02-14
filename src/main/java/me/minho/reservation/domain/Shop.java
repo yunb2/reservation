@@ -1,10 +1,14 @@
 package me.minho.reservation.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.minho.reservation.domain.request.ShopInfo;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @Entity
@@ -28,12 +32,15 @@ public class Shop {
     @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
+    @Getter
     @Column(name = "OPEN_TIME", nullable = false)
     private LocalDateTime openTime;
 
+    @Getter
     @Column(name = "CLOSE_TIME", nullable = false)
     private LocalDateTime closeTime;
 
+    @Getter
     @Column(name = "RESERVATION_INTERVAL", nullable = false)
     private int interval;
 
@@ -54,5 +61,21 @@ public class Shop {
 
     public ShopInfo summarize() {
         return new ShopInfo(name, contact, address, description, openTime, closeTime);
+    }
+
+    public Timetable createTimetable(List<Reservation> reservationList) {
+        final Map<LocalDateTime, Boolean> table = initTable();
+        reservationList.forEach(reservation -> table.remove(reservation.getStartTime()));
+        return Timetable.of(table);
+    }
+
+    private Map<LocalDateTime, Boolean> initTable() {
+        final Map<LocalDateTime, Boolean> table = new HashMap<>();
+        LocalDateTime time = openTime;
+        while (time.isBefore(closeTime)) {
+            table.put(time, false);
+            time = time.plusMinutes(interval);
+        }
+        return table;
     }
 }
