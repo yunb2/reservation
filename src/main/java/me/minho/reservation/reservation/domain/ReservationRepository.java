@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    List<Reservation> findAllByShopIdAndStartTimeAfterAndStartTimeBefore(long shopId, LocalDateTime day, LocalDateTime nextDay);
+    List<Reservation> findAllByShopIdAndStartTimeAfterAndStartTimeBefore(long shopId, LocalDateTime startTime, LocalDateTime nextStartTime);
+
+    Reservation findByShopIdAndStartTimeAndReservationStatus(long shopId, LocalDateTime startTime, ReservationStatus status);
 }

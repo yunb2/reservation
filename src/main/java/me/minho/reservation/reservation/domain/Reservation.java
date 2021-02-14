@@ -3,6 +3,7 @@ package me.minho.reservation.reservation.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.shop.domain.Shop;
 
@@ -35,10 +36,12 @@ public class Reservation {
     @Column(name = "RESERVATION_TYPE", nullable = false)
     private ReservationType reservationType;
 
+    @Setter
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @Setter
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "SHOP_ID")
     private Shop shop;

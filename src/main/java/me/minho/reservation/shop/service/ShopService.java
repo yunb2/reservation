@@ -1,6 +1,7 @@
 package me.minho.reservation.shop.service;
 
 import lombok.RequiredArgsConstructor;
+import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.reservation.domain.Reservation;
 import me.minho.reservation.shop.domain.Shop;
 import me.minho.reservation.shop.domain.ShopRepository;
@@ -19,22 +20,30 @@ public class ShopService {
     private final ShopRepository shopRepository;
 
     @Transactional
-    public Long createShop(Shop shop) {
+    public long save(Shop shop) {
         return shopRepository.save(shop).getId();
     }
 
-    public List<Shop> getShopList() {
+    public List<Shop> findAll() {
         return shopRepository.findAll();
     }
 
-    public Shop getShop(long id) {
+    public Shop findById(long id) {
         return shopRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 샵이 없습니다. id = " + id));
     }
 
-    public Shop getShopWithOneDayReservationList(long shopId, LocalDateTime dateTime) {
-        Shop shop = getShop(shopId);
-        List<Reservation> reservationList = reservationService.getOneDayReservationList(shop.getId(), dateTime);
+    public Shop findShopWithOneDayReservationList(long shopId, LocalDateTime dateTime) {
+        Shop shop = findById(shopId);
+        List<Reservation> reservationList = reservationService.findOneDayReservationList(shop.getId(), dateTime);
         shop.setReservationList(reservationList);
         return shop;
+    }
+
+    @Transactional
+    public long saveReservation(long shopId, Reservation reservation) {
+        Shop shop = findById(shopId);
+        reservation.setShop(shop);
+        reservation.setMember(Member.SUPER_MEMBER);
+        return reservationService.save(reservation);
     }
 }
