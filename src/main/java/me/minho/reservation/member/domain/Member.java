@@ -14,6 +14,13 @@ import javax.persistence.*;
 @Table(name = "MEMBER")
 public class Member {
 
+    public static final Member SUPER_MEMBER = Member.builder()
+            .id(1)
+            .email("keun0390@naver.com")
+            .name("유인근")
+            .memberType(MemberType.NORMAL)
+            .build();
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
     private long id;
@@ -36,7 +43,8 @@ public class Member {
     private Shop shop;
 
     @Builder
-    public Member(String email, String password, String name, MemberType memberType) {
+    public Member(long id, String email, String password, String name, MemberType memberType) {
+        this.id = id; // 임시
         this.email = email;
         this.password = password;
         this.name = name;
