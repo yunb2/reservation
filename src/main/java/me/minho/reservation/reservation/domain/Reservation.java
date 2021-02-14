@@ -1,4 +1,6 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.reservation.domain;
+
+import me.minho.reservation.member.domain.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
