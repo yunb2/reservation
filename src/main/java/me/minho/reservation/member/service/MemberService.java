@@ -3,6 +3,7 @@ package me.minho.reservation.member.service;
 import lombok.RequiredArgsConstructor;
 import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.member.domain.MemberRepository;
+import me.minho.reservation.reservation.service.ShopService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,13 +11,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MemberService {
 
+    private final ShopService shopService;
     private final MemberRepository memberRepository;
 
     @Transactional
     public Long signUp(Member member) {
+        // 이메일 중복 검사
         if (memberRepository.findByEmail(member.getEmail()) != null) {
             throw new IllegalArgumentException("이미 존재하는 이메일입니다");
         }
-        return memberRepository.save(member).getId();
+
+        // 회원 생성
+        memberRepository.save(member);
+
+        // 관리자면 샵도 함께 생성
+        if (member.isAdmin()) {
+            shopService.createShop(member.getShop());
+        }
+
+        return member.getId();
     }
 }
