@@ -9,7 +9,7 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "RESERVATION")
 public class Reservation {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RESERVATION_ID")
     private long id;
 
