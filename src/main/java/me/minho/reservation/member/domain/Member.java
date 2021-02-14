@@ -1,7 +1,13 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.member.domain;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
+@Getter
 @Entity
 @Table(name = "MEMBER")
 public class Member {
@@ -22,4 +28,12 @@ public class Member {
     @Enumerated(EnumType.STRING)
     @Column(name = "MEMBER_TYPE", nullable = false)
     private MemberType memberType;
+
+    @Builder
+    public Member(String email, String password, String name, MemberType memberType) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.memberType = memberType;
+    }
 }
