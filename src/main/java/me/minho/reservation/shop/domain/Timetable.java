@@ -1,4 +1,4 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.shop.domain;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
-package me.minho.reservation.domain.request;
+package me.minho.reservation.member.controller.dto;
 
 import lombok.*;
-import me.minho.reservation.domain.Member;
-import me.minho.reservation.domain.MemberType;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.member.domain.MemberType;
 import me.minho.reservation.util.HashUtil;
 
 import java.security.NoSuchAlgorithmException;

@@ -1,8 +1,9 @@
 package me.minho.reservation.service;
 
-import me.minho.reservation.domain.Member;
-import me.minho.reservation.domain.MemberType;
-import me.minho.reservation.repository.MemberRepository;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.member.domain.MemberType;
+import me.minho.reservation.member.service.MemberService;
+import me.minho.reservation.member.repository.MemberRepository;
 import me.minho.reservation.util.HashUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

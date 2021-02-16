@@ -1,6 +1,6 @@
-package me.minho.reservation.repository;
+package me.minho.reservation.shop.repository;
 
-import me.minho.reservation.domain.Shop;
+import me.minho.reservation.shop.domain.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

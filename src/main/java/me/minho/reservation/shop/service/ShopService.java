@@ -1,14 +1,14 @@
-package me.minho.reservation.service;
+package me.minho.reservation.shop.service;
 
 import lombok.RequiredArgsConstructor;
-import me.minho.reservation.domain.Member;
-import me.minho.reservation.domain.Reservation;
-import me.minho.reservation.domain.Shop;
-import me.minho.reservation.domain.Timetable;
-import me.minho.reservation.domain.request.ShopInfo;
-import me.minho.reservation.repository.MemberRepository;
-import me.minho.reservation.repository.ReservationRepository;
-import me.minho.reservation.repository.ShopRepository;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.reservation.domain.Reservation;
+import me.minho.reservation.shop.domain.Shop;
+import me.minho.reservation.shop.domain.Timetable;
+import me.minho.reservation.shop.controller.dto.ShopInfo;
+import me.minho.reservation.member.repository.MemberRepository;
+import me.minho.reservation.reservation.repository.ReservationRepository;
+import me.minho.reservation.shop.repository.ShopRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

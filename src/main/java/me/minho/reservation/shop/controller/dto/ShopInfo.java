@@ -1,8 +1,8 @@
-package me.minho.reservation.domain.request;
+package me.minho.reservation.shop.controller.dto;
 
 import lombok.Data;
-import me.minho.reservation.domain.Member;
-import me.minho.reservation.domain.Shop;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.shop.domain.Shop;
 
 import java.time.LocalDateTime;
 

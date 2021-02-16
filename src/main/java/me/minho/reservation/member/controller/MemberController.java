@@ -1,11 +1,11 @@
-package me.minho.reservation.controller;
+package me.minho.reservation.member.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.minho.reservation.domain.request.LoginRequest;
-import me.minho.reservation.domain.request.SignupRequest;
-import me.minho.reservation.domain.response.RestResponse;
-import me.minho.reservation.domain.response.ResultCode;
-import me.minho.reservation.service.MemberService;
+import me.minho.reservation.common.RestResponse;
+import me.minho.reservation.common.ResultCode;
+import me.minho.reservation.member.controller.dto.LoginRequest;
+import me.minho.reservation.member.controller.dto.SignupRequest;
+import me.minho.reservation.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
-package me.minho.reservation.repository;
+package me.minho.reservation.reservation.repository;
 
-import me.minho.reservation.domain.Reservation;
+import me.minho.reservation.reservation.domain.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

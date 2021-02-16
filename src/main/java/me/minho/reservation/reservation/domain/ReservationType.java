@@ -1,4 +1,4 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.reservation.domain;
 
 public enum ReservationType {
     NORMAL, ADMIN

@@ -1,4 +1,4 @@
-package me.minho.reservation.domain.request;
+package me.minho.reservation.member.controller.dto;
 
 import lombok.Data;
 

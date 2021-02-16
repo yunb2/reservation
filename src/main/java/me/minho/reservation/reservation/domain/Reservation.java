@@ -1,6 +1,8 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.reservation.domain;
 
 import lombok.Getter;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.shop.domain.Shop;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

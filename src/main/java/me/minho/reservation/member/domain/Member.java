@@ -1,4 +1,4 @@
-package me.minho.reservation.domain;
+package me.minho.reservation.member.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

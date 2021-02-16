@@ -1,11 +1,12 @@
 package me.minho.reservation.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import me.minho.reservation.domain.Member;
-import me.minho.reservation.domain.MemberType;
-import me.minho.reservation.domain.request.SignupRequest;
-import me.minho.reservation.domain.response.ResultCode;
-import me.minho.reservation.service.MemberService;
+import me.minho.reservation.member.controller.MemberController;
+import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.member.domain.MemberType;
+import me.minho.reservation.member.controller.dto.SignupRequest;
+import me.minho.reservation.common.ResultCode;
+import me.minho.reservation.member.service.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

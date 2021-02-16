@@ -1,4 +1,4 @@
-package me.minho.reservation.domain.response;
+package me.minho.reservation.common;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

@@ -1,11 +1,11 @@
-package me.minho.reservation.controller;
+package me.minho.reservation.shop.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.minho.reservation.domain.Timetable;
-import me.minho.reservation.domain.request.ShopInfo;
-import me.minho.reservation.domain.response.RestResponse;
-import me.minho.reservation.domain.response.ResultCode;
-import me.minho.reservation.service.ShopService;
+import me.minho.reservation.shop.controller.dto.ShopInfo;
+import me.minho.reservation.shop.domain.Timetable;
+import me.minho.reservation.common.RestResponse;
+import me.minho.reservation.common.ResultCode;
+import me.minho.reservation.shop.service.ShopService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
