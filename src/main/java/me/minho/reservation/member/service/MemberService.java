@@ -32,4 +32,8 @@ public class MemberService {
         }
         return findMember.getId();
     }
+
+    public Member findMemberById(long memberId) {
+        return memberRepository.findById(memberId).orElseThrow();
+    }
 }

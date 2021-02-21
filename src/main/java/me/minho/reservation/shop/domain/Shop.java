@@ -82,4 +82,8 @@ public class Shop {
         }
         return table;
     }
+
+    public boolean isOpenAt(LocalTime reservationTime) {
+        return reservationTime.isAfter(openTime.minusMinutes(1)) && reservationTime.isBefore(closeTime.plusMinutes(1));
+    }
 }
