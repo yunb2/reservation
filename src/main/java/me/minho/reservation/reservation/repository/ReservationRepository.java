@@ -9,4 +9,5 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     List<Reservation> findAllByShopIdAndStartTimeAfterAndStartTimeBefore(long shopId, LocalDateTime openTime, LocalDateTime closeTime);
     List<Reservation> findAllByMemberId(long memberId);
+    List<Reservation> findAllByShopIdAndStartTime(long shopId, LocalDateTime startTime);
 }

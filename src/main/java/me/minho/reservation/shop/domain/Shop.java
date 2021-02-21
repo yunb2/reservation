@@ -19,6 +19,7 @@ import java.util.Map;
 @Table(name = "SHOP")
 public class Shop {
 
+    @Getter
     @Id @GeneratedValue
     @Column(name = "SHOP_ID")
     private long id;

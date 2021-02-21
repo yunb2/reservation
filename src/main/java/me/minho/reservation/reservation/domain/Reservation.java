@@ -3,6 +3,7 @@ package me.minho.reservation.reservation.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.minho.reservation.member.domain.Member;
+import me.minho.reservation.reservation.controller.dto.ReservationInfo;
 import me.minho.reservation.shop.domain.Shop;
 
 import javax.persistence.*;
@@ -36,6 +37,7 @@ public class Reservation {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @Getter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SHOP_ID")
     private Shop shop;
@@ -51,5 +53,15 @@ public class Reservation {
 
     public static Reservation of (Shop shop, Member member, LocalDateTime reservationTime) {
         return new Reservation(reservationTime, member, shop);
+    }
+
+    public boolean isReservedBy(long memberId) {
+        return member.getId() != memberId;
+    }
+
+    public void update(ReservationInfo reservationInfo) {
+        startTime = reservationInfo.getReservationTime();
+        endTime = startTime.plusMinutes(shop.getInterval());
+        reservationStatus = reservationInfo.getStatus();
     }
 }

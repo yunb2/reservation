@@ -3,12 +3,12 @@ package me.minho.reservation.reservation.controller;
 import lombok.RequiredArgsConstructor;
 import me.minho.reservation.common.RestResponse;
 import me.minho.reservation.common.ResultCode;
+import me.minho.reservation.reservation.controller.dto.ReservationInfo;
 import me.minho.reservation.reservation.domain.Reservation;
 import me.minho.reservation.reservation.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -29,6 +29,19 @@ public class ReservationController {
             return new RestResponse<>(ResultCode.SUCCESS, reservationList).toResponseEntity(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new RestResponse<List<Reservation>>(ResultCode.BAD_REQUEST, null).toResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/reservations/{reservationId}")
+    public ResponseEntity<RestResponse<String>> updateReservation(@PathVariable long reservationId,
+                                                                  @RequestBody ReservationInfo reservationInfo,
+                                                                  HttpSession session) {
+        try {
+            final long memberId = (long) Optional.ofNullable(session.getAttribute("id")).orElseThrow();
+            reservationService.updateReservation(memberId, reservationId, reservationInfo);
+            return new RestResponse<>(ResultCode.SUCCESS, "").toResponseEntity(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new RestResponse<>(ResultCode.BAD_REQUEST, "").toResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
