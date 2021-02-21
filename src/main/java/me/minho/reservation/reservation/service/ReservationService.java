@@ -24,4 +24,8 @@ public class ReservationService {
     public void makeReservation(Shop shop, Member member, LocalDateTime reservationTime) {
         reservationRepository.save(Reservation.of(shop, member, reservationTime));
     }
+
+    public List<Reservation> getMyReservationList(long memberId) {
+        return reservationRepository.findAllByMemberId(memberId);
+    }
 }
