@@ -19,7 +19,7 @@ public class MemberService {
         if (findMember != null) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
-        memberRepository.save(findMember);
+        memberRepository.save(member);
     }
 
     public long login(String email, String passwordInput) {

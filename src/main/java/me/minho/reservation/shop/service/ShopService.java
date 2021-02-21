@@ -40,6 +40,6 @@ public class ShopService {
         final Shop shop = shopRepository.findById(id).orElseThrow();
         final List<Reservation> reservationList =
                 reservationRepository.findAllByShopIdAndStartTimeAfterAndStartTimeBefore(id, date.atStartOfDay(), date.plusDays(1).atStartOfDay());
-        return shop.createTimetable(reservationList);
+        return shop.createTimetable(date, reservationList);
     }
 }

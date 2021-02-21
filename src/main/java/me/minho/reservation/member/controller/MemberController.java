@@ -42,14 +42,16 @@ public class MemberController {
             long id = memberService.login(request.getEmail(), request.getPassword());
             session.setAttribute("id", id);
             return new RestResponse<>(ResultCode.SUCCESS, "").toResponseEntity(HttpStatus.OK);
-        } catch (NoSuchElementException | IllegalArgumentException e) {
+        } catch (NoSuchElementException e) {
             return new RestResponse<>(ResultCode.NOT_FOUND, "").toResponseEntity(HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new RestResponse<>(ResultCode.BAD_REQUEST, "").toResponseEntity(HttpStatus.OK);
         }
     }
 
     @GetMapping("/logout")
     public ResponseEntity<RestResponse<String>> logout(HttpSession session) {
-        session.removeAttribute("id");
+        session.invalidate();
         return new RestResponse<>(ResultCode.SUCCESS, "").toResponseEntity(HttpStatus.OK);
     }
 

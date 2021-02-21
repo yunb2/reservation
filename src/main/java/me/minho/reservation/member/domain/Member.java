@@ -16,7 +16,7 @@ public class Member {
     private long id;
 
     @Getter
-    @Column(name = "EMAIL", unique = true, nullable = false, columnDefinition = "char(")
+    @Column(name = "EMAIL", unique = true, nullable = false)
     private String email;
 
     @Getter
