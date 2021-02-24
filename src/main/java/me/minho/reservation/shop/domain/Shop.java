@@ -87,4 +87,8 @@ public class Shop {
     public boolean isOpenAt(LocalTime reservationTime) {
         return reservationTime.isAfter(openTime.minusMinutes(1)) && reservationTime.isBefore(closeTime.plusMinutes(1));
     }
+
+    public LocalDateTime getEndTime(LocalDateTime reservationTime) {
+        return reservationTime.plusMinutes(this.interval);
+    }
 }

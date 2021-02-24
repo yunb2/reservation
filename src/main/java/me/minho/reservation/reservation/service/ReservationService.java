@@ -7,11 +7,13 @@ import me.minho.reservation.reservation.domain.Reservation;
 import me.minho.reservation.reservation.repository.ReservationRepository;
 import me.minho.reservation.shop.domain.Shop;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +26,10 @@ public class ReservationService {
     }
 
     public void makeReservation(Shop shop, Member member, LocalDateTime reservationTime) {
+        final List<Reservation> reservationList = reservationRepository.findAllByShopIdAndStartTime(shop.getId(), reservationTime);
+        if (!CollectionUtils.isEmpty(reservationList)) {
+            throw new IllegalStateException("예약 가능한 시간이 아닙니다.");
+        }
         reservationRepository.save(Reservation.of(shop, member, reservationTime));
     }
 
@@ -31,6 +37,7 @@ public class ReservationService {
         return reservationRepository.findAllByMemberId(memberId);
     }
 
+    @Transactional
     public void updateReservation(long memberId, long reservationId, ReservationInfo reservationInfo) {
         final Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
         if (!reservation.isReservedBy(memberId)) {
@@ -44,7 +51,7 @@ public class ReservationService {
         }
 
         final List<Reservation> reservationList = reservationRepository.findAllByShopIdAndStartTime(shop.getId(), reservationTime);
-        if (!CollectionUtils.isEmpty(reservationList)) {
+        if (!CollectionUtils.isEmpty(reservationList.stream().filter(Reservation::isReady).collect(Collectors.toList()))) {
             throw new IllegalStateException("예약 가능한 시간이 아닙니다.");
         }
 

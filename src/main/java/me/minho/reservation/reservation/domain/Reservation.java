@@ -44,7 +44,7 @@ public class Reservation {
 
     private Reservation(LocalDateTime reservationTime, Member member, Shop shop) {
         this.startTime = reservationTime;
-        this.endTime = reservationTime.plusMinutes(shop.getInterval());
+        this.endTime = shop.getEndTime(reservationTime);
         this.reservationStatus = ReservationStatus.READY;
         this.reservationType = ReservationType.NORMAL;
         this.member = member;
@@ -61,7 +61,11 @@ public class Reservation {
 
     public void update(ReservationInfo reservationInfo) {
         startTime = reservationInfo.getReservationTime();
-        endTime = startTime.plusMinutes(shop.getInterval());
+        endTime = shop.getEndTime(reservationInfo.getReservationTime());
         reservationStatus = reservationInfo.getStatus();
+    }
+
+    public boolean isReady() {
+        return reservationStatus == ReservationStatus.READY;
     }
 }

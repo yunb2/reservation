@@ -55,6 +55,8 @@ public class ShopController {
             final long memberId = (long) Optional.ofNullable(session.getAttribute("id")).orElseThrow();
             shopService.makeReservation(shopId, memberId, reservationTime);
             return new RestResponse<>(ResultCode.SUCCESS, "").toResponseEntity(HttpStatus.OK);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            return new RestResponse<>(ResultCode.BAD_REQUEST, "").toResponseEntity(HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new RestResponse<>(ResultCode.BAD_REQUEST, "").toResponseEntity(HttpStatus.BAD_REQUEST);
         }
