@@ -16,11 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
+    @Transactional(readOnly = true)
     public List<Reservation> getReservationList(long shopId, LocalDate date) {
         return reservationRepository.findAllByShopIdAndStartTimeAfterAndStartTimeBefore(shopId, date.atStartOfDay(), date.plusDays(1).atStartOfDay());
     }
@@ -33,11 +35,11 @@ public class ReservationService {
         reservationRepository.save(Reservation.of(shop, member, reservationTime));
     }
 
+    @Transactional(readOnly = true)
     public List<Reservation> getMyReservationList(long memberId) {
         return reservationRepository.findAllByMemberId(memberId);
     }
 
-    @Transactional
     public void updateReservation(long memberId, long reservationId, ReservationInfo reservationInfo) {
         final Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
         if (!reservation.isReservedBy(memberId)) {

@@ -35,11 +35,13 @@ public class ShopService {
         shopRepository.save(shopInfo.toShop(member));
     }
 
+    @Transactional(readOnly = true)
     public List<ShopInfo> getList() {
         final List<Shop> shopList = shopRepository.findAll();
         return shopList.stream().map(Shop::summarize).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public Timetable getTimetable(long shopId, LocalDate date) {
         final Shop shop = shopRepository.findById(shopId).orElseThrow();
         final List<Reservation> reservationList = reservationService.getReservationList(shopId, date);

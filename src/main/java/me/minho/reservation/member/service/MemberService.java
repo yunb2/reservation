@@ -5,10 +5,12 @@ import me.minho.reservation.member.domain.Member;
 import me.minho.reservation.member.repository.MemberRepository;
 import me.minho.reservation.util.HashUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class MemberService {
 
@@ -22,6 +24,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    @Transactional(readOnly = true)
     public long login(String email, String passwordInput) {
         final Member findMember = memberRepository.findByEmail(email);
         if (findMember == null) {
@@ -33,6 +36,7 @@ public class MemberService {
         return findMember.getId();
     }
 
+    @Transactional(readOnly = true)
     public Member findMemberById(long memberId) {
         return memberRepository.findById(memberId).orElseThrow();
     }
